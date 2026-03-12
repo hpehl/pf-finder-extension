@@ -74,42 +74,11 @@ export class Finder {
 
     // Search
     if (withSearch) {
+      // language=html
+      const html = '<div class="pf-v6-c-text-input-group"><div class="pf-v6-c-text-input-group__main pf-m-icon"><span class="pf-v6-c-text-input-group__text"><span class="pf-v6-c-text-input-group__icon"><svg class="pf-v6-svg" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" role="img" width="1em" height="1em"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></span><input type="text" class="pf-v6-c-text-input-group__text-input" aria-label="Filter by name" placeholder="Filter by name" value=""></span></div></div>';
       const search = document.createElement('div');
       search.classList.add('pf-v6-c-finder__column-search');
-
-      const searchInput = document.createElement('div');
-      searchInput.classList.add('pf-v6-c-search-input');
-
-      const inputGroup = document.createElement('div');
-      inputGroup.classList.add('pf-v6-c-input-group');
-
-      const inputGroupItem = document.createElement('div');
-      inputGroupItem.classList.add('pf-v6-c-input-group__item', 'pf-m-fill');
-
-      const textInputGroup = document.createElement('div');
-      textInputGroup.classList.add('pf-v6-c-text-input-group');
-
-      const textInputGroupMain = document.createElement('div');
-      textInputGroupMain.classList.add('pf-v6-c-text-input-group__main');
-
-      const iconSpan = document.createElement('span');
-      iconSpan.classList.add('pf-v6-c-text-input-group__icon');
-      iconSpan.innerHTML = '<i class="fas fa-search"></i>';
-      textInputGroupMain.appendChild(iconSpan);
-
-      const input = document.createElement('input');
-      input.classList.add('pf-v6-c-text-input-group__text-input');
-      input.type = 'search';
-      input.placeholder = 'Filter';
-      input.setAttribute('aria-label', 'Filter items');
-      input.addEventListener('input', () => this.filterItems(col, input.value));
-      textInputGroupMain.appendChild(input);
-
-      textInputGroup.appendChild(textInputGroupMain);
-      inputGroupItem.appendChild(textInputGroup);
-      inputGroup.appendChild(inputGroupItem);
-      searchInput.appendChild(inputGroup);
-      search.appendChild(searchInput);
+      search.innerHTML = html;
       col.appendChild(search);
     }
 

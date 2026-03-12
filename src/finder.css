@@ -43,7 +43,9 @@
   --pf-v6-c-finder__column-item--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
   --pf-v6-c-finder__column-item--m-selected--BackgroundColor: var(--pf-t--global--color--brand--default);
   --pf-v6-c-finder__column-item--m-selected--Color: var(--pf-t--global--text--color--300);
-  --pf-v6-c-finder__column-item--Gap: var(--pf-t--global--spacer--200);
+  --pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor: var(--pf-t--global--background--color--secondary--hover);
+  --pf-v6-c-finder__column-item--m-selected--inactive--Color: var(--pf-t--global--text--color--100);
+  --pf-v6-c-finder__column-item--Gap: var(--pf-t--global--spacer--300);
   --pf-v6-c-finder__column-item-row--MinHeight: 3.125rem;
 
   /* Column item focus */
@@ -248,7 +250,7 @@
   text-overflow: ellipsis;
 }
 
-.pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-description {
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-description {
   color: var(--pf-v6-c-finder__column-item--m-selected--Color);
 }
 
@@ -280,16 +282,27 @@
    Item modifiers
    =================================================================== */
 
+/* Selected item in inactive columns */
 .pf-v6-c-finder__column-item.pf-m-selected {
+  background-color: var(--pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor);
+  color: var(--pf-v6-c-finder__column-item--m-selected--inactive--Color);
+}
+
+.pf-v6-c-finder__column-item.pf-m-selected:hover {
+  background-color: var(--pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor);
+}
+
+/* Selected item in active column */
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected {
   background-color: var(--pf-v6-c-finder__column-item--m-selected--BackgroundColor);
   color: var(--pf-v6-c-finder__column-item--m-selected--Color);
 }
 
-.pf-v6-c-finder__column-item.pf-m-selected:hover {
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected:hover {
   background-color: var(--pf-v6-c-finder__column-item--m-selected--BackgroundColor);
 }
 
-.pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-folder-icon {
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-folder-icon {
   color: var(--pf-v6-c-finder__column-item-folder-icon--m-selected--Color);
 }
 

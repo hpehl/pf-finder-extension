@@ -29,6 +29,10 @@
         background-color: var(--pf-t--global--background--color--secondary--default);
         margin: 0;
         padding: var(--pf-t--global--spacer--400);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        box-sizing: border-box;
       }
 
       .demo-header {
@@ -50,7 +54,8 @@
       }
 
       #finder-demo {
-        height: 500px;
+        flex: 1;
+        min-height: 0;
       }
 
       #finder-demo .pf-v6-c-finder {
