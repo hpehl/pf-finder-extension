@@ -17,7 +17,6 @@ export class Finder {
     this.onSelect = options.onSelect || null;
     this.customRenderPreview = options.renderPreview || null;
     this.showSearch = options.showSearch ?? true;
-    this.keyboardMode = options.keyboardMode || 'outline'; // 'outline' or 'navigate'
 
     this.root = document.createElement('div');
     this.root.classList.add('pf-v6-c-finder');
@@ -219,25 +218,14 @@ export class Finder {
     if (!col) return;
 
     switch (e.key) {
-      case 'Enter':
-      case ' ': {
-        e.preventDefault();
-        this.handleItemClick(li, col, li._finderData);
-        break;
-      }
-
       case 'ArrowDown': {
         e.preventDefault();
         const items = this.getVisibleItems(col);
         const idx = items.indexOf(li);
         if (idx < items.length - 1) {
           const target = items[idx + 1];
-          if (this.keyboardMode === 'navigate') {
-            this.handleItemClick(target, col, target._finderData);
-            target.focus();
-          } else {
-            target.focus();
-          }
+          this.handleItemClick(target, col, target._finderData);
+          target.focus();
         }
         break;
       }
@@ -248,12 +236,8 @@ export class Finder {
         const idx = items.indexOf(li);
         if (idx > 0) {
           const target = items[idx - 1];
-          if (this.keyboardMode === 'navigate') {
-            this.handleItemClick(target, col, target._finderData);
-            target.focus();
-          } else {
-            target.focus();
-          }
+          this.handleItemClick(target, col, target._finderData);
+          target.focus();
         }
         break;
       }
@@ -266,11 +250,7 @@ export class Finder {
           const selected = nextCol.querySelector('.pf-v6-c-finder__column-item.pf-m-selected');
           const target = selected || this.getVisibleItems(nextCol)[0];
           if (target) {
-            if (this.keyboardMode === 'navigate') {
-              this.handleItemClick(target, nextCol, target._finderData);
-            } else {
-              this.setActiveColumn(nextCol);
-            }
+            this.handleItemClick(target, nextCol, target._finderData);
             target.focus();
             this.scrollColumnIntoView(nextCol);
           }
@@ -438,7 +418,4 @@ export class Finder {
     col.classList.add('pf-m-active');
   }
 
-  setKeyboardMode(mode) {
-    this.keyboardMode = mode;
-  }
 }

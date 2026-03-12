@@ -282,32 +282,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const mount = document.getElementById('finder-demo');
   if (!mount) return;
 
-  const finder = new Finder(mount, {
+  new Finder(mount, {
     data: sampleData,
     showSearch: true,
-    keyboardMode: 'outline',
     onSelect: (item) => {
       console.log('Selected:', item.name);
     },
   });
-
-  // Keyboard mode switch
-  const controls = document.getElementById('finder-controls');
-  if (controls) {
-    const select = document.createElement('select');
-    select.classList.add('pf-v6-c-form-control');
-    select.innerHTML = `
-      <option value="outline">Outline</option>
-      <option value="navigate">Navigate</option>
-    `;
-    select.addEventListener('change', () => {
-      finder.setKeyboardMode(select.value);
-    });
-
-    const label = document.createElement('label');
-    label.style.cssText = 'display: inline-flex; align-items: center; gap: var(--pf-t--global--spacer--200);';
-    label.textContent = 'Keyboard mode: ';
-    label.appendChild(select);
-    controls.appendChild(label);
-  }
 });
