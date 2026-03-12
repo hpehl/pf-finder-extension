@@ -29,6 +29,7 @@ export class Finder {
 
     this.columns = [];
     this.previewEl = null;
+    this.pinnedItems = new Map(); // column element -> Set of pinned data item ids
 
     this.root.addEventListener('keydown', (e) => this.handleKeydown(e));
 
@@ -142,6 +143,17 @@ export class Finder {
         row.appendChild(actions);
       }
 
+      // Pin button
+      const pinBtn = document.createElement('button');
+      pinBtn.classList.add('pf-v6-c-finder__column-item-pin');
+      pinBtn.setAttribute('aria-label', 'Pin');
+      pinBtn.innerHTML = '<i class="fas fa-thumbtack"></i>';
+      pinBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.togglePin(li, col, dataItem);
+      });
+      row.appendChild(pinBtn);
+
       // Folder chevron
       if (isFolder) {
         const folderIcon = document.createElement('span');
@@ -152,6 +164,7 @@ export class Finder {
 
       li.appendChild(row);
       li._finderData = dataItem;
+      li._finderOriginalIndex = items.indexOf(dataItem);
 
       // Click handler
       li.addEventListener('click', () => this.handleItemClick(li, col, dataItem));
@@ -385,6 +398,92 @@ export class Finder {
   setActiveColumn(col) {
     this.columns.forEach((c) => c.classList.remove('pf-m-active'));
     col.classList.add('pf-m-active');
+  }
+
+  togglePin(li, col, dataItem) {
+    if (!this.pinnedItems.has(col)) {
+      this.pinnedItems.set(col, []);
+    }
+
+    const pinned = this.pinnedItems.get(col);
+    const list = col.querySelector('.pf-v6-c-finder__column-items');
+    const isPinned = li.classList.contains('pf-m-pinned');
+
+    if (isPinned) {
+      // Unpin
+      li.classList.remove('pf-m-pinned');
+      const pinBtn = li.querySelector('.pf-v6-c-finder__column-item-pin');
+      pinBtn.setAttribute('aria-label', 'Pin');
+      pinBtn.innerHTML = '<i class="fas fa-thumbtack"></i>';
+
+      // Remove from pinned list
+      const idx = pinned.indexOf(dataItem.id);
+      if (idx !== -1) pinned.splice(idx, 1);
+
+      // Remove li from current position
+      li.remove();
+
+      // Find unpinned items (after the divider)
+      const divider = list.querySelector('.pf-v6-c-divider');
+      const unpinnedItems = [...list.querySelectorAll('.pf-v6-c-finder__column-item:not(.pf-m-pinned)')]
+        .filter((item) => item !== li);
+
+      // Find the right insertion point based on original index
+      let inserted = false;
+      for (const item of unpinnedItems) {
+        if (item._finderOriginalIndex > li._finderOriginalIndex) {
+          item.before(li);
+          inserted = true;
+          break;
+        }
+      }
+      if (!inserted) {
+        list.appendChild(li);
+      }
+
+      // Remove divider if no more pinned items
+      if (pinned.length === 0) {
+        const divider = list.querySelector('.pf-v6-c-divider');
+        if (divider) divider.remove();
+      }
+    } else {
+      // Pin
+      li.classList.add('pf-m-pinned');
+      const pinBtn = li.querySelector('.pf-v6-c-finder__column-item-pin');
+      pinBtn.setAttribute('aria-label', 'Unpin');
+      pinBtn.innerHTML = '<i class="fas fa-times"></i>';
+
+      // Add to pinned list
+      pinned.push(dataItem.id);
+
+      // Remove li from current position
+      li.remove();
+
+      // Ensure divider exists
+      let divider = list.querySelector('.pf-v6-c-divider');
+      if (!divider) {
+        divider = document.createElement('li');
+        divider.classList.add('pf-v6-c-divider');
+        divider.setAttribute('role', 'presentation');
+      }
+
+      // Insert pinned item before the divider
+      // First remove divider, then re-add after all pinned items
+      divider.remove();
+
+      // Get all currently pinned items in the list
+      const pinnedInDom = list.querySelectorAll('.pf-v6-c-finder__column-item.pf-m-pinned');
+      if (pinnedInDom.length > 0) {
+        // Insert after last pinned item
+        const lastPinned = pinnedInDom[pinnedInDom.length - 1];
+        lastPinned.after(li);
+        li.after(divider);
+      } else {
+        // First pinned item - insert at top
+        list.prepend(li);
+        li.after(divider);
+      }
+    }
   }
 
 }
