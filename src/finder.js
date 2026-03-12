@@ -352,22 +352,6 @@ export class Finder {
   }
 
   /**
-   * Filter items in a column based on search query.
-   */
-  filterItems(col, query) {
-    const normalizedQuery = query.toLowerCase().trim();
-    const items = col.querySelectorAll('.pf-v6-c-finder__column-item');
-
-    items.forEach((item) => {
-      const text = item.querySelector('.pf-v6-c-finder__column-item-text');
-      if (!text) return;
-
-      const matches = !normalizedQuery || text.textContent.toLowerCase().includes(normalizedQuery);
-      item.hidden = !matches;
-    });
-  }
-
-  /**
    * Scroll a specific column into view within the columns container.
    */
   scrollColumnIntoView(col) {
@@ -423,8 +407,7 @@ export class Finder {
       // Remove li from current position
       li.remove();
 
-      // Find unpinned items (after the divider)
-      const divider = list.querySelector('.pf-v6-c-divider');
+      // Find unpinned items
       const unpinnedItems = [...list.querySelectorAll('.pf-v6-c-finder__column-item:not(.pf-m-pinned)')]
         .filter((item) => item !== li);
 

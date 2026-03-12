@@ -75,16 +75,9 @@
   --pf-v6-c-finder__column-item-folder-icon--Color: var(--pf-t--global--text--color--subtle);
   --pf-v6-c-finder__column-item-folder-icon--m-selected--Color: var(--pf-t--global--text--color--on-brand--default);
 
-  /* Expandable content */
-  --pf-v6-c-finder__column-item-expandable-content--PaddingBlock: var(--pf-t--global--spacer--200);
-  --pf-v6-c-finder__column-item-expandable-content--PaddingInlineStart: var(--pf-t--global--spacer--300);
-  --pf-v6-c-finder__column-item-expandable-content--PaddingInlineEnd: var(--pf-t--global--spacer--200);
-
   /* Preview */
   --pf-v6-c-finder__preview--MinWidth: 24rem;
   --pf-v6-c-finder__preview--BackgroundColor: var(--pf-t--global--background--color--secondary--default);
-  --pf-v6-c-finder__preview--BorderLeftColor: var(--pf-t--global--border--color--default);
-  --pf-v6-c-finder__preview--BorderLeftWidth: var(--pf-t--global--border--width--100);
   --pf-v6-c-finder__preview-header--PaddingBlock: var(--pf-t--global--spacer--300);
   --pf-v6-c-finder__preview-header--PaddingInline: var(--pf-t--global--spacer--400);
   --pf-v6-c-finder__preview-header--BorderBottomColor: var(--pf-t--global--border--color--default);
@@ -338,21 +331,6 @@
 
 .pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-item.pf-m-selected .pf-v6-c-finder__column-item-folder-icon {
   color: var(--pf-v6-c-finder__column-item-folder-icon--m-selected--Color);
-}
-
-/* ===================================================================
-   Expandable content
-   =================================================================== */
-
-.pf-v6-c-finder__column-item-expandable-content {
-  display: none;
-  padding-block: var(--pf-v6-c-finder__column-item-expandable-content--PaddingBlock);
-  padding-inline-start: var(--pf-v6-c-finder__column-item-expandable-content--PaddingInlineStart);
-  padding-inline-end: var(--pf-v6-c-finder__column-item-expandable-content--PaddingInlineEnd);
-}
-
-.pf-v6-c-finder__column-item.pf-m-expanded .pf-v6-c-finder__column-item-expandable-content {
-  display: block;
 }
 
 /* ===================================================================
