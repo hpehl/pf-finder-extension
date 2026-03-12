@@ -43,16 +43,43 @@
         font-family: var(--pf-t--global--font--family--200),sans-serif;
         font-size: var(--pf-t--global--font--size--700);
         font-weight: var(--pf-t--global--font--weight--200);
-        color: var(--pf-t--global--text--color--100);
+        color: var(--pf-t--global--text--color--regular);
         margin: 0 0 var(--pf-t--global--spacer--100) 0;
       }
 
       .demo-header p {
         font-size: var(--pf-t--global--font--size--200);
-        color: var(--pf-t--global--text--color--200);
+        color: var(--pf-t--global--text--color--subtle);
         margin: 0;
       }
 
+      .demo-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--pf-t--global--spacer--400);
+      }
+
+      .demo-theme-toggle {
+        display: flex;
+        align-items: center;
+        gap: var(--pf-t--global--spacer--200);
+        flex-shrink: 0;
+      }
+
+      .demo-theme-toggle label {
+        font-size: var(--pf-t--global--font--size--200);
+        color: var(--pf-t--global--text--color--subtle);
+      }
+
+      .demo-theme-toggle select {
+        font-size: var(--pf-t--global--font--size--200);
+        padding: var(--pf-t--global--spacer--100) var(--pf-t--global--spacer--200);
+        border: var(--pf-t--global--border--width--100) solid var(--pf-t--global--border--color--default);
+        border-radius: var(--pf-t--global--border--radius--100);
+        background-color: var(--pf-t--global--background--color--primary--default);
+        color: var(--pf-t--global--text--color--regular);
+      }
       #finder-demo {
         flex: 1;
         min-height: 0;
@@ -65,7 +92,16 @@
   </head>
   <body>
     <div class="demo-header">
-      <h1>Finder Extension</h1>
+      <div class="demo-header-row">
+        <h1>Finder Extension</h1>
+        <div class="demo-theme-toggle">
+          <label for="theme-select">Theme</label>
+          <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
       <p>
         A macOS Finder-style column browser component for PatternFly 6.
         Click folders to navigate, click any item to see its preview.

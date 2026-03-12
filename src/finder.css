@@ -11,7 +11,7 @@
   --pf-v6-c-finder--BorderWidth: var(--pf-t--global--border--width--100);
   --pf-v6-c-finder--BorderRadius: var(--pf-t--global--border--radius--100);
   --pf-v6-c-finder--FontSize: var(--pf-t--global--font--size--200);
-  --pf-v6-c-finder--Color: var(--pf-t--global--text--color--100);
+  --pf-v6-c-finder--Color: var(--pf-t--global--text--color--regular);
   --pf-v6-c-finder-MaxColumns: 3;
 
   /* Column */
@@ -42,9 +42,9 @@
   --pf-v6-c-finder__column-item--BackgroundColor: transparent;
   --pf-v6-c-finder__column-item--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
   --pf-v6-c-finder__column-item--m-selected--BackgroundColor: var(--pf-t--global--color--brand--default);
-  --pf-v6-c-finder__column-item--m-selected--Color: var(--pf-t--global--text--color--300);
-  --pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor: var(--pf-t--global--background--color--secondary--hover);
-  --pf-v6-c-finder__column-item--m-selected--inactive--Color: var(--pf-t--global--text--color--100);
+  --pf-v6-c-finder__column-item--m-selected--Color: var(--pf-t--global--text--color--on-brand--default);
+  --pf-v6-c-finder__column-item--m-selected--inactive--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+  --pf-v6-c-finder__column-item--m-selected--inactive--Color: var(--pf-t--global--text--color--regular);
   --pf-v6-c-finder__column-item--Gap: var(--pf-t--global--spacer--300);
   --pf-v6-c-finder__column-item-row--MinHeight: 3.125rem;
 
@@ -68,8 +68,8 @@
 
   /* Column item folder icon */
   --pf-v6-c-finder__column-item-folder-icon--Width: var(--pf-t--global--icon--size--200);
-  --pf-v6-c-finder__column-item-folder-icon--Color: var(--pf-t--global--text--color--200);
-  --pf-v6-c-finder__column-item-folder-icon--m-selected--Color: var(--pf-t--global--text--color--300);
+  --pf-v6-c-finder__column-item-folder-icon--Color: var(--pf-t--global--text--color--subtle);
+  --pf-v6-c-finder__column-item-folder-icon--m-selected--Color: var(--pf-t--global--text--color--on-brand--default);
 
   /* Expandable content */
   --pf-v6-c-finder__column-item-expandable-content--PaddingBlock: var(--pf-t--global--spacer--200);

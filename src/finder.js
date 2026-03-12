@@ -319,20 +319,20 @@ export class Finder {
     const lines = [];
 
     lines.push(`<div style="text-align: center; padding: var(--pf-t--global--spacer--400) 0;">`);
-    lines.push(`  <i class="${icon}" style="font-size: 3rem; color: var(--pf-t--global--text--color--200);"></i>`);
+    lines.push(`  <i class="${icon}" style="font-size: 3rem; color: var(--pf-t--global--text--color--subtle);"></i>`);
     lines.push(`</div>`);
 
     if (dataItem.meta) {
       lines.push(`<dl style="margin: 0;">`);
       for (const [key, value] of Object.entries(dataItem.meta)) {
         lines.push(`  <dt style="font-weight: var(--pf-t--global--font--weight--200); margin-top: var(--pf-t--global--spacer--200);">${key}</dt>`);
-        lines.push(`  <dd style="margin: 0; color: var(--pf-t--global--text--color--200);">${value}</dd>`);
+        lines.push(`  <dd style="margin: 0; color: var(--pf-t--global--text--color--subtle);">${value}</dd>`);
       }
       lines.push(`</dl>`);
     }
 
     if (isFolder) {
-      lines.push(`<p style="color: var(--pf-t--global--text--color--200); margin-top: var(--pf-t--global--spacer--300);">${dataItem.children.length} item${dataItem.children.length !== 1 ? 's' : ''}</p>`);
+      lines.push(`<p style="color: var(--pf-t--global--text--color--subtle); margin-top: var(--pf-t--global--spacer--300);">${dataItem.children.length} item${dataItem.children.length !== 1 ? 's' : ''}</p>`);
     }
 
     return lines.join('\n');

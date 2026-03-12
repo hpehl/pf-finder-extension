@@ -289,4 +289,17 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Selected:', item.name);
     },
   });
+
+  // Theme toggle
+  const themeSelect = document.getElementById('theme-select');
+  if (themeSelect) {
+    themeSelect.addEventListener('change', (e) => {
+      const html = document.documentElement;
+      if (e.target.value === 'dark') {
+        html.classList.add('pf-v6-theme-dark');
+      } else {
+        html.classList.remove('pf-v6-theme-dark');
+      }
+    });
+  }
 });
