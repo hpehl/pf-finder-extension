@@ -38,7 +38,7 @@
   --pf-v6-c-finder__column-item--PaddingBlockStart: var(--pf-t--global--spacer--200);
   --pf-v6-c-finder__column-item--PaddingBlockEnd: var(--pf-t--global--spacer--200);
   --pf-v6-c-finder__column-item--PaddingInlineStart: var(--pf-t--global--spacer--300);
-  --pf-v6-c-finder__column-item--PaddingInlineEnd: var(--pf-t--global--spacer--200);
+  --pf-v6-c-finder__column-item--PaddingInlineEnd: var(--pf-t--global--spacer--300);
   --pf-v6-c-finder__column-item--BackgroundColor: transparent;
   --pf-v6-c-finder__column-item--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
   --pf-v6-c-finder__column-item--m-selected--BackgroundColor: var(--pf-t--global--color--brand--default);
