@@ -143,24 +143,22 @@ export class Finder {
         row.appendChild(actions);
       }
 
-      // Pin button
+      // Pin button (icon swap controlled by CSS via .pf-m-pinned)
       const pinBtn = document.createElement('button');
       pinBtn.classList.add('pf-v6-c-finder__column-item-pin');
       pinBtn.setAttribute('aria-label', 'Pin');
-      pinBtn.innerHTML = '<i class="fas fa-thumbtack"></i>';
+      pinBtn.innerHTML = '<i class="fas fa-thumbtack pf-v6-c-finder__column-item-pin-icon--default"></i><i class="fas fa-times pf-v6-c-finder__column-item-pin-icon--pinned"></i>';
       pinBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.togglePin(li, col, dataItem);
       });
       row.appendChild(pinBtn);
 
-      // Folder chevron
-      if (isFolder) {
-        const folderIcon = document.createElement('span');
-        folderIcon.classList.add('pf-v6-c-finder__column-item-folder-icon');
-        folderIcon.innerHTML = '<i class="fas fa-angle-right"></i>';
-        row.appendChild(folderIcon);
-      }
+      // Folder chevron (visibility controlled by CSS via .pf-m-folder)
+      const folderIcon = document.createElement('span');
+      folderIcon.classList.add('pf-v6-c-finder__column-item-folder-icon');
+      folderIcon.innerHTML = '<i class="fas fa-angle-right"></i>';
+      row.appendChild(folderIcon);
 
       li.appendChild(row);
       li._finderData = dataItem;
@@ -398,7 +396,6 @@ export class Finder {
       li.classList.remove('pf-m-pinned');
       const pinBtn = li.querySelector('.pf-v6-c-finder__column-item-pin');
       pinBtn.setAttribute('aria-label', 'Pin');
-      pinBtn.innerHTML = '<i class="fas fa-thumbtack"></i>';
 
       // Remove from pinned list
       const idx = pinned.indexOf(dataItem.id);
@@ -434,7 +431,6 @@ export class Finder {
       li.classList.add('pf-m-pinned');
       const pinBtn = li.querySelector('.pf-v6-c-finder__column-item-pin');
       pinBtn.setAttribute('aria-label', 'Unpin');
-      pinBtn.innerHTML = '<i class="fas fa-times"></i>';
 
       // Add to pinned list
       pinned.push(dataItem.id);
