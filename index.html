@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PatternFly 6 Finder Extension</title>
+
+    <!-- PatternFly 6 base CSS -->
+
+    <!-- Font Awesome 6 (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Finder component CSS -->
+
+    <style>
+      body {
+        font-family: var(--pf-t--global--font--family--100),sans-serif;
+        background-color: var(--pf-t--global--background--color--secondary--default);
+        margin: 0;
+        padding: var(--pf-t--global--spacer--400);
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+
+      .demo-header {
+        margin-bottom: var(--pf-t--global--spacer--400);
+      }
+
+      .demo-header h1 {
+        font-family: var(--pf-t--global--font--family--200),sans-serif;
+        font-size: var(--pf-t--global--font--size--700);
+        font-weight: var(--pf-t--global--font--weight--200);
+        color: var(--pf-t--global--text--color--regular);
+        margin: 0 0 var(--pf-t--global--spacer--100) 0;
+      }
+
+      .demo-header p {
+        font-size: var(--pf-t--global--font--size--200);
+        color: var(--pf-t--global--text--color--subtle);
+        margin: 0;
+      }
+
+      .demo-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--pf-t--global--spacer--400);
+      }
+
+      .demo-theme-toggle {
+        display: flex;
+        align-items: center;
+        gap: var(--pf-t--global--spacer--200);
+        flex-shrink: 0;
+      }
+
+      .demo-theme-toggle label {
+        font-size: var(--pf-t--global--font--size--200);
+        color: var(--pf-t--global--text--color--subtle);
+      }
+
+      .demo-theme-toggle select {
+        font-size: var(--pf-t--global--font--size--200);
+        padding: var(--pf-t--global--spacer--100) var(--pf-t--global--spacer--200);
+        border: var(--pf-t--global--border--width--100) solid var(--pf-t--global--border--color--default);
+        border-radius: var(--pf-t--global--border--radius--100);
+        background-color: var(--pf-t--global--background--color--primary--default);
+        color: var(--pf-t--global--text--color--regular);
+      }
+      #finder-demo {
+        flex: 1;
+        min-height: 0;
+      }
+
+      #finder-demo .pf-v6-c-finder {
+        height: 100%;
+      }
+    </style>
+    <script type="module" crossorigin src="/pf-finder-extension/assets/index-_4wXqrre.js"></script>
+    <link rel="stylesheet" crossorigin href="/pf-finder-extension/assets/index-CRRMqQSs.css">
+  </head>
+  <body>
+    <div class="demo-header">
+      <div class="demo-header-row">
+        <h1>Finder Extension</h1>
+        <div class="demo-theme-toggle">
+          <label for="theme-select">Theme</label>
+          <select id="theme-select">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </div>
+      <p>
+        A macOS Finder-style column browser component for PatternFly 6.
+        Click folders to navigate, click any item to see its preview.
+      </p>
+    </div>
+
+    <div id="finder-demo"></div>
+
+  </body>
+</html>
