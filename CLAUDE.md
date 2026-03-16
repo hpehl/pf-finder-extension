@@ -20,17 +20,27 @@ No tests or linting configured.
 The core deliverable. Follows PatternFly 6 BEM conventions with `pf-v6-c-finder` prefix. All design tokens reference PatternFly 6 CSS custom properties (`--pf-t--global--*`). Component-scoped custom properties are defined on `.pf-v6-c-finder` root.
 
 Key CSS structure:
-- `.pf-v6-c-finder` - Root flex container with horizontal overflow scroll
-- `.pf-v6-c-finder__column` - Individual navigable column (header, optional search, item list)
-- `.pf-v6-c-finder__column-item` - Selectable row with icon, text, optional actions, optional folder chevron
+- `.pf-v6-c-finder` - Root flex container
+- `.pf-v6-c-finder__columns` - Scrollable columns wrapper (horizontal overflow, max visible columns controlled by `--pf-v6-c-finder-MaxColumns`)
+- `.pf-v6-c-finder__column` - Individual column (header, optional search, item list)
+  - `.pf-v6-c-finder__column-header` - Header with text and action buttons
+  - `.pf-v6-c-finder__column-search` - Optional search/filter input
+  - `.pf-v6-c-finder__column-items` - Scrollable `<ul>` item list
+- `.pf-v6-c-finder__item` - Selectable list item (`<li>`)
+  - `.pf-v6-c-finder__item-row` - Flex row layout inside each item
+  - `.pf-v6-c-finder__item-icon` - Leading icon
+  - `.pf-v6-c-finder__item-content` - Wraps text and optional description
+  - `.pf-v6-c-finder__item-actions` - Action buttons (visible on hover/selected)
+  - `.pf-v6-c-finder__item-pin` - Pin/unpin button with icon swap
+  - `.pf-v6-c-finder__item-folder-icon` - Trailing chevron for folders
 - `.pf-v6-c-finder__preview` - Right-side preview pane (flex-grows to fill remaining space)
-- Modifiers: `.pf-m-selected`, `.pf-m-folder`, `.pf-m-expanded`
+- Modifiers: `.pf-m-selected`, `.pf-m-folder`, `.pf-m-active` (column), `.pf-m-pinned`
 
 ### Demo JavaScript (`src/finder.js`)
-`Finder` class that imperatively builds DOM. Takes a container element and options (`data`, `onSelect`, `renderPreview`, `showSearch`). Data nodes follow shape: `{ id, name, icon, children?, meta?, actions? }`.
+`Finder` class that imperatively builds DOM. Takes a container element and options (`data`, `onSelect`, `renderPreview`, `showSearch`). Data nodes follow shape: `{ id, name, icon, description?, children?, meta?, actions? }`. Supports keyboard navigation (arrow keys), item pinning, and column filtering.
 
 ### Build
-Vite is configured to build only `src/finder.css` as the entry point (no JS bundle). Output uses flat filenames (`[name][extname]`).
+Vite 8 (uses Rolldown) is configured to build only `src/finder.css` as the entry point (no JS bundle). Config uses `rolldownOptions` (not `rollupOptions`). Output uses flat filenames (`[name][extname]`).
 
 ## Conventions
 
