@@ -80,6 +80,8 @@ export class Finder {
       const search = document.createElement('div');
       search.classList.add('pf-v6-c-finder__column-search');
       search.innerHTML = html;
+      const input = search.querySelector('.pf-v6-c-text-input-group__text-input');
+      input.addEventListener('input', () => this.filterColumn(col, input.value));
       col.appendChild(search);
     }
 
@@ -380,6 +382,18 @@ export class Finder {
   setActiveColumn(col) {
     this.columns.forEach((c) => c.classList.remove('pf-m-active'));
     col.classList.add('pf-m-active');
+  }
+
+  /**
+   * Filter items in a column by name.
+   */
+  filterColumn(col, query) {
+    const filter = query.toLowerCase();
+    const items = col.querySelectorAll('.pf-v6-c-finder__item');
+    items.forEach((item) => {
+      const name = item._finderData?.name?.toLowerCase() || '';
+      item.hidden = filter !== '' && !name.includes(filter);
+    });
   }
 
   togglePin(li, col, dataItem) {
