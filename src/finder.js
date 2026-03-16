@@ -89,7 +89,7 @@ export class Finder {
 
     items.forEach((dataItem) => {
       const li = document.createElement('li');
-      li.classList.add('pf-v6-c-finder__column-item');
+      li.classList.add('pf-v6-c-finder__item');
       li.setAttribute('tabindex', '0');
       li.setAttribute('aria-selected', 'false');
 
@@ -99,28 +99,28 @@ export class Finder {
       }
 
       const row = document.createElement('div');
-      row.classList.add('pf-v6-c-finder__column-item-row');
+      row.classList.add('pf-v6-c-finder__item-row');
 
       // Icon
       if (dataItem.icon) {
         const icon = document.createElement('span');
-        icon.classList.add('pf-v6-c-finder__column-item-icon');
+        icon.classList.add('pf-v6-c-finder__item-icon');
         icon.innerHTML = `<i class="${dataItem.icon}"></i>`;
         row.appendChild(icon);
       }
 
       // Content (text + optional description)
       const content = document.createElement('span');
-      content.classList.add('pf-v6-c-finder__column-item-content');
+      content.classList.add('pf-v6-c-finder__item-content');
 
       const text = document.createElement('span');
-      text.classList.add('pf-v6-c-finder__column-item-text');
+      text.classList.add('pf-v6-c-finder__item-text');
       text.textContent = dataItem.name;
       content.appendChild(text);
 
       if (dataItem.description) {
         const desc = document.createElement('span');
-        desc.classList.add('pf-v6-c-finder__column-item-description');
+        desc.classList.add('pf-v6-c-finder__item-description');
         desc.textContent = dataItem.description;
         content.appendChild(desc);
       }
@@ -130,7 +130,7 @@ export class Finder {
       // Item actions (show on folders and select files)
       if (dataItem.actions) {
         const actions = document.createElement('span');
-        actions.classList.add('pf-v6-c-finder__column-item-actions');
+        actions.classList.add('pf-v6-c-finder__item-actions');
 
         const actionBtn = document.createElement('button');
         actionBtn.classList.add('pf-v6-c-button', 'pf-m-plain');
@@ -145,9 +145,9 @@ export class Finder {
 
       // Pin button (icon swap controlled by CSS via .pf-m-pinned)
       const pinBtn = document.createElement('button');
-      pinBtn.classList.add('pf-v6-c-finder__column-item-pin');
+      pinBtn.classList.add('pf-v6-c-finder__item-pin');
       pinBtn.setAttribute('aria-label', 'Pin');
-      pinBtn.innerHTML = '<i class="fas fa-thumbtack pf-v6-c-finder__column-item-pin-icon--default"></i><i class="fas fa-times pf-v6-c-finder__column-item-pin-icon--pinned"></i>';
+      pinBtn.innerHTML = '<i class="fas fa-thumbtack pf-v6-c-finder__item-pin-icon--default"></i><i class="fas fa-times pf-v6-c-finder__item-pin-icon--pinned"></i>';
       pinBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         this.togglePin(li, col, dataItem);
@@ -156,7 +156,7 @@ export class Finder {
 
       // Folder chevron (visibility controlled by CSS via .pf-m-folder)
       const folderIcon = document.createElement('span');
-      folderIcon.classList.add('pf-v6-c-finder__column-item-folder-icon');
+      folderIcon.classList.add('pf-v6-c-finder__item-folder-icon');
       folderIcon.innerHTML = '<i class="fas fa-angle-right"></i>';
       row.appendChild(folderIcon);
 
@@ -184,14 +184,14 @@ export class Finder {
    * Get visible (not hidden) items in a column.
    */
   getVisibleItems(col) {
-    return [...col.querySelectorAll('.pf-v6-c-finder__column-item')].filter((item) => !item.hidden);
+    return [...col.querySelectorAll('.pf-v6-c-finder__item')].filter((item) => !item.hidden);
   }
 
   /**
    * Handle keyboard navigation.
    */
   handleKeydown(e) {
-    const li = e.target.closest('.pf-v6-c-finder__column-item');
+    const li = e.target.closest('.pf-v6-c-finder__item');
     if (!li) return;
 
     const col = li.closest('.pf-v6-c-finder__column');
@@ -227,7 +227,7 @@ export class Finder {
         const colIndex = this.columns.indexOf(col);
         const nextCol = this.columns[colIndex + 1];
         if (nextCol) {
-          const selected = nextCol.querySelector('.pf-v6-c-finder__column-item.pf-m-selected');
+          const selected = nextCol.querySelector('.pf-v6-c-finder__item.pf-m-selected');
           const target = selected || this.getVisibleItems(nextCol)[0];
           if (target) {
             this.handleItemClick(target, nextCol, target._finderData);
@@ -243,7 +243,7 @@ export class Finder {
         const colIndex = this.columns.indexOf(col);
         if (colIndex > 0) {
           const prevCol = this.columns[colIndex - 1];
-          const selected = prevCol.querySelector('.pf-v6-c-finder__column-item.pf-m-selected');
+          const selected = prevCol.querySelector('.pf-v6-c-finder__item.pf-m-selected');
           if (selected) {
             this.setActiveColumn(prevCol);
             selected.focus();
@@ -263,7 +263,7 @@ export class Finder {
     this.setActiveColumn(col);
 
     // Deselect all items in this column
-    col.querySelectorAll('.pf-v6-c-finder__column-item').forEach((item) => {
+    col.querySelectorAll('.pf-v6-c-finder__item').forEach((item) => {
       item.classList.remove('pf-m-selected');
       item.setAttribute('aria-selected', 'false');
     });
@@ -394,7 +394,7 @@ export class Finder {
     if (isPinned) {
       // Unpin
       li.classList.remove('pf-m-pinned');
-      const pinBtn = li.querySelector('.pf-v6-c-finder__column-item-pin');
+      const pinBtn = li.querySelector('.pf-v6-c-finder__item-pin');
       pinBtn.setAttribute('aria-label', 'Pin');
 
       // Remove from pinned list
@@ -405,7 +405,7 @@ export class Finder {
       li.remove();
 
       // Find unpinned items
-      const unpinnedItems = [...list.querySelectorAll('.pf-v6-c-finder__column-item:not(.pf-m-pinned)')]
+      const unpinnedItems = [...list.querySelectorAll('.pf-v6-c-finder__item:not(.pf-m-pinned)')]
         .filter((item) => item !== li);
 
       // Find the right insertion point based on original index
@@ -429,7 +429,7 @@ export class Finder {
     } else {
       // Pin
       li.classList.add('pf-m-pinned');
-      const pinBtn = li.querySelector('.pf-v6-c-finder__column-item-pin');
+      const pinBtn = li.querySelector('.pf-v6-c-finder__item-pin');
       pinBtn.setAttribute('aria-label', 'Unpin');
 
       // Add to pinned list
@@ -451,7 +451,7 @@ export class Finder {
       divider.remove();
 
       // Get all currently pinned items in the list
-      const pinnedInDom = list.querySelectorAll('.pf-v6-c-finder__column-item.pf-m-pinned');
+      const pinnedInDom = list.querySelectorAll('.pf-v6-c-finder__item.pf-m-pinned');
       if (pinnedInDom.length > 0) {
         // Insert after last pinned item
         const lastPinned = pinnedInDom[pinnedInDom.length - 1];
