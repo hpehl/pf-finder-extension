@@ -20,6 +20,7 @@ export class Finder {
 
     this.root = document.createElement('div');
     this.root.classList.add('pf-v6-c-finder');
+    this.root.setAttribute('role', 'region');
     this.root.setAttribute('aria-label', 'Finder');
     this.container.appendChild(this.root);
 
@@ -88,10 +89,13 @@ export class Finder {
     // Items list
     const list = document.createElement('ul');
     list.classList.add('pf-v6-c-finder__column-items');
+    list.setAttribute('role', 'listbox');
+    list.setAttribute('aria-label', title);
 
     items.forEach((dataItem) => {
       const li = document.createElement('li');
       li.classList.add('pf-v6-c-finder__item');
+      li.setAttribute('role', 'option');
       li.setAttribute('tabindex', '0');
       li.setAttribute('aria-selected', 'false');
 
@@ -149,6 +153,7 @@ export class Finder {
       const pinBtn = document.createElement('button');
       pinBtn.classList.add('pf-v6-c-finder__item-pin');
       pinBtn.setAttribute('aria-label', 'Pin');
+      pinBtn.setAttribute('aria-pressed', 'false');
       pinBtn.innerHTML = '<i class="fas fa-thumbtack pf-v6-c-finder__item-pin-icon--default"></i><i class="fas fa-times pf-v6-c-finder__item-pin-icon--pinned"></i>';
       pinBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -277,7 +282,10 @@ export class Finder {
     // Remove all columns after this one
     const colIndex = this.columns.indexOf(col);
     const toRemove = this.columns.splice(colIndex + 1);
-    toRemove.forEach((c) => c.remove());
+    toRemove.forEach((c) => {
+      this.pinnedItems.delete(c);
+      c.remove();
+    });
 
     // If folder, add child column
     const isFolder = dataItem.children && dataItem.children.length > 0;
@@ -410,6 +418,7 @@ export class Finder {
       li.classList.remove('pf-m-pinned');
       const pinBtn = li.querySelector('.pf-v6-c-finder__item-pin');
       pinBtn.setAttribute('aria-label', 'Pin');
+      pinBtn.setAttribute('aria-pressed', 'false');
 
       // Remove from pinned list
       const idx = pinned.indexOf(dataItem.id);
@@ -445,6 +454,7 @@ export class Finder {
       li.classList.add('pf-m-pinned');
       const pinBtn = li.querySelector('.pf-v6-c-finder__item-pin');
       pinBtn.setAttribute('aria-label', 'Unpin');
+      pinBtn.setAttribute('aria-pressed', 'true');
 
       // Add to pinned list
       pinned.push(dataItem.id);
