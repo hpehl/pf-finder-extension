@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         finder: 'src/finder.css',
       },
