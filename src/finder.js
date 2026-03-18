@@ -51,13 +51,13 @@ export class Finder {
     const header = document.createElement('div');
     header.classList.add('pf-v6-c-finder__column-header');
 
-    const headerText = document.createElement('span');
-    headerText.classList.add('pf-v6-c-finder__column-header-text');
+    const headerText = document.createElement('h4');
+    headerText.classList.add('pf-v6-c-finder__column-title-text');
     headerText.textContent = title;
     header.appendChild(headerText);
 
     const headerActions = document.createElement('div');
-    headerActions.classList.add('pf-v6-c-finder__column-header-actions');
+    headerActions.classList.add('pf-v6-c-finder__column-actions');
 
     const addBtn = document.createElement('button');
     addBtn.classList.add('pf-v6-c-button', 'pf-m-plain');

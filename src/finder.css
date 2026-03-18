@@ -1,4 +1,4 @@
-/* PatternFly 6 Finder Extension Component */
+/* PatternFly Java Finder Extension */
 /* A macOS Finder-style column browser for hierarchical navigation */
 
 /* ===================================================================
@@ -26,8 +26,8 @@
   --pf-v6-c-finder__column-header--PaddingInlineEnd: var(--pf-t--global--spacer--200);
   --pf-v6-c-finder__column-header--BorderBottomColor: var(--pf-t--global--border--color--default);
   --pf-v6-c-finder__column-header--BorderBottomWidth: var(--pf-t--global--border--width--100);
-  --pf-v6-c-finder__column-header-text--FontWeight: var(--pf-t--global--font--weight--200);
-  --pf-v6-c-finder__column-header-text--FontSize: var(--pf-t--global--font--size--200);
+  --pf-v6-c-finder__column-title-text--FontWeight: var(--pf-t--global--font--weight--heading--default);
+  --pf-v6-c-finder__column-title-text--FontSize: var(--pf-t--global--font--size--md);
 
   /* Column search */
   --pf-v6-c-finder__column-search--PaddingBlock: var(--pf-t--global--spacer--200);
@@ -137,19 +137,19 @@
   border-bottom: var(--pf-v6-c-finder__column-header--BorderBottomWidth) solid var(--pf-v6-c-finder__column-header--BorderBottomColor);
 }
 
-.pf-v6-c-finder__column-header-text {
-  font-weight: var(--pf-v6-c-finder__column-header-text--FontWeight);
-  font-size: var(--pf-v6-c-finder__column-header-text--FontSize);
+.pf-v6-c-finder__column-title-text {
+  font-weight: var(--pf-v6-c-finder__column-title-text--FontWeight);
+  font-size: var(--pf-v6-c-finder__column-title-text--FontSize);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-header-text {
+.pf-v6-c-finder__column.pf-m-active .pf-v6-c-finder__column-title-text {
   text-decoration: underline;
 }
 
-.pf-v6-c-finder__column-header-actions {
+.pf-v6-c-finder__column-actions {
   display: flex;
   align-items: center;
   gap: var(--pf-t--global--spacer--100);
