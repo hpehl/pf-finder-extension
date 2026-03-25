@@ -312,22 +312,23 @@ export class Finder {
 
     this.previewEl = document.createElement('div');
     this.previewEl.classList.add('pf-v6-c-finder__preview');
+    this.previewEl.classList.add('pf-v6-u-p-md');
 
-    const header = document.createElement('div');
-    header.classList.add('pf-v6-c-finder__preview-header');
+    const content = document.createElement('div');
+    const header = document.createElement('h2');
+    header.classList.add('pf-v6-c-content--h2');
     header.textContent = dataItem.name;
-    this.previewEl.appendChild(header);
+    content.appendChild(header);
 
     const body = document.createElement('div');
-    body.classList.add('pf-v6-c-finder__preview-body');
-
     if (this.customRenderPreview) {
       body.innerHTML = this.customRenderPreview(dataItem);
     } else {
       body.innerHTML = this.defaultPreviewContent(dataItem);
     }
+    content.appendChild(body);
 
-    this.previewEl.appendChild(body);
+    this.previewEl.appendChild(content);
     this.root.appendChild(this.previewEl);
   }
 
